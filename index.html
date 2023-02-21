@@ -15,47 +15,6 @@
     </div>
 
     <script src="./vueRouter/hashRouter.js">
-        class HashRouter {
-            constructor({ routes = [] }) {
-                this.routes = routes // 路由表
-                this.currenHash = '' // 当前路由
-                this.refresh = this.refresh.bind(this) // hash 改变触发的回调， 这里改this是为调用的时候比较方便
-                window.addEventListener('load', this.refresh)
-                window.addEventListener('hashchange', this.refresh)
-            }
-            /**
-             * 
-             * @param {*} url 根据 url 拿到 # 后面的东西
-             * @returns # 后面的东西
-             */
-            getUrlPath(url = '') {
-                return url.indexOf('#') > -1 ? url.slice(url.indexOf('#') + 1) : '/'
-            }
-            refresh(eventCHange) {
-                let newHash = '', oldHash = null;
-                if (eventCHange.newURL) {
-                    newHash = this.getUrlPath(eventCHange.newURL || '')
-                    oldHash = this.getUrlPath(eventCHange.oldURL || '')
-                } else {
-                    newHash = this.getUrlPath(window.location.hash)
-                }
-                this.currenHash = newHash
-                setTimeout(() => {
-                    this.machComponent() // 匹配组件
-                })
-            }
-            /**
-             * 根据路由匹配对应的页面（组件）
-             */
-            machComponent() {
-                let currenRoute = this.routes.find(item => item.path === this.currenHash)
-                if (!currenRoute) {
-                    currenRoute = this.routes.find(item => item.path === '/')
-                }
-                const app = document.querySelector('#app')
-                app && (app.innerHTML = currenRoute.component)
-            }
-        }
     </script>
     <script>
         const routes = [

@@ -3,7 +3,7 @@ const CACHE_NAME = 'CACHE-v1';
 // 缓存时效时间
 const expirationTime = 1000 * 60 * 60 * 24 * 7;
 // 缓存请求url
-const urlsToCache = ['/README.md', '/test.js'];
+const urlsToCache = ['/serviceWorker/README.md', '/serviceWorker/test.js'];
 
 // 注册 install 事件
 self.addEventListener('install', event => {
